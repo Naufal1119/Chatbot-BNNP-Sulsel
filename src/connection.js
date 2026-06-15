@@ -1,11 +1,12 @@
-const { makeWASocket, useMultiFileAuthState, DisconnectReason } = require('@whiskeysockets/baileys');
+const { makeWASocket, DisconnectReason } = require('@whiskeysockets/baileys');
 const qrcode = require('qrcode-terminal');
 const pino = require('pino');
+const { useMongoDBAuthState } = require('./mongoAuth');
 
 let sock = null;
 
 async function startConnection(onMessage) {
-  const { state, saveCreds } = await useMultiFileAuthState('auth_info');
+  const { state, saveCreds } = await useMongoDBAuthState();
 
   sock = makeWASocket({
     auth: state,
@@ -28,7 +29,8 @@ async function startConnection(onMessage) {
 
     if (connection === 'open') {
       console.log('✓ WhatsApp terhubung!');
-      console.log(`✓ Nomor: ${update.qr ? 'Menunggu...' : sock.user?.id || 'Terkoneksi'}`);
+      const userId = sock.user?.id || 'Terkoneksi';
+      console.log(`✓ Nomor: ${userId}`);
     }
 
     if (connection === 'close') {
@@ -37,7 +39,7 @@ async function startConnection(onMessage) {
       if (shouldReconnect) {
         startConnection(onMessage);
       } else {
-        console.log('✗ WhatsApp terlogout. Hapus folder auth_info dan jalankan ulang.');
+        console.log('✗ WhatsApp terlogout. Hapus data dari MongoDB dan jalankan ulang.');
       }
     }
   });

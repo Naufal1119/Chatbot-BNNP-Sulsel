@@ -7,12 +7,18 @@
     "start": "node index.js",
     "dev": "node --watch index.js"
   },
-  "keywords": ["whatsapp", "bot", "baileys", "chatbot"],
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "baileys",
+    "chatbot"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
     "@whiskeysockets/baileys": "^7.0.0-rc13",
+    "mongoose": "^9.7.0",
     "pino": "^10.3.1",
     "qrcode-terminal": "^0.12.0"
   }
