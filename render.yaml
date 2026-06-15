@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: wa-chatbot
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: true
+    disk:
+      name: auth-data
+      mountPath: /opt/render/project/src/auth_info
+      sizeGB: 1

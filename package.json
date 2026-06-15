@@ -1,0 +1,19 @@
+{
+  "name": "wa-chatbot",
+  "version": "1.0.0",
+  "description": "WhatsApp Chatbot with Baileys - Deployable on Render",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": ["whatsapp", "bot", "baileys", "chatbot"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc13",
+    "pino": "^10.3.1",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
